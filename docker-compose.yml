@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      # Add database environment variables here if using a persistent DB
+
+  frontend:
+    build: ./hospital-analytics-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
