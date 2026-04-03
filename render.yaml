@@ -16,12 +16,6 @@ services:
       - key: FRONTEND_URL
         value: https://hospital-analytics-frontend.vercel.app
 
-databases:
-  - name: hospital-db
-    plan: free
-    databaseName: hospitaldb
-    user: hospitaluser
-
   - type: web
     name: hospital-analytics-frontend
     env: static
@@ -35,3 +29,9 @@ databases:
           type: web
           name: hospital-analytics-system
           envVarKey: RENDER_EXTERNAL_URL
+
+databases:
+  - name: hospital-db
+    plan: free
+    databaseName: hospitaldb
+    user: hospitaluser
