@@ -5,7 +5,7 @@ services:
     dockerContext: .
     dockerfilePath: Dockerfile
     plan: free
-    healthCheckPath: /api/doctors
+    healthCheckPath: /doctors
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
@@ -21,3 +21,17 @@ databases:
     plan: free
     databaseName: hospitaldb
     user: hospitaluser
+
+  - type: web
+    name: hospital-analytics-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    rootDir: hospital-analytics-frontend
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: hospital-analytics-system
+          envVarKey: RENDER_EXTERNAL_URL
