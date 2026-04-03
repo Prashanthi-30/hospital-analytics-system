@@ -14,7 +14,7 @@ services:
           name: hospital-db
           property: connectionString
       - key: FRONTEND_URL
-        sync: false # Set this to your deployed frontend URL (e.g. https://hospital-frontend.onrender.com)
+        value: https://hospital-analytics-frontend.vercel.app
 
 databases:
   - name: hospital-db
