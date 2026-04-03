@@ -28,11 +28,16 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // Only seed data if the database is empty — safe for all restarts
+        if (patientRepository.count() > 0) {
+            return;
+        }
+
         // Initialize Patients
         Patient p1 = createPatient("Sarah Jenkins", "Female", 34, "95%", "active");
         Patient p2 = createPatient("Robert Smith", "Male", 58, "60%", "risk");
         Patient p3 = createPatient("Maria Garcia", "Female", 42, "100%", "active");
-        
+
         patientRepository.save(p1);
         patientRepository.save(p2);
         patientRepository.save(p3);
@@ -40,7 +45,7 @@ public class DataInitializer implements CommandLineRunner {
         // Initialize Doctors
         Doctor d1 = createDoctor("Dr. James Wilson", "Cardiology", 15, "Available", 4.8);
         Doctor d2 = createDoctor("Dr. Emily Chen", "Neurology", 8, "On Break", 4.5);
-        
+
         doctorRepository.save(d1);
         doctorRepository.save(d2);
 
